@@ -1,4 +1,4 @@
-Civic Celerator
+Civic Celerator Fundraiser Analysis Project
 =========
 
 > The purpose of the Civic Celerator demo day is to create a project that ties together some publicly avaialbe data sets regarding political campaign spending and contribution data and to make inferences/information based on that data.
