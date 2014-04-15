@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "restify": "1.4.3"
+    "restify": "1.4.3",
+    "mongoose": "*"
   }
 }
