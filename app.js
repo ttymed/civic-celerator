@@ -51,6 +51,9 @@ function getCandidates(req, res, next) {
   return res.json(candidate);
 }
 
+function getContributions(req, res, next) {
+  return res.json(contributions);
+} 
 // function findOneCandidate(req, res, next) {
 //   res.header('Access-Control-Allow-Origin', "*");
 //   res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -61,7 +64,7 @@ function getCandidates(req, res, next) {
 
 //rest verb handling
 server.get('/candidates', getCandidates);
-
+server.get('/contributions', getContributions);
 
 
 server.listen(8080, function() {
