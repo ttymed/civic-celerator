@@ -1,9 +1,10 @@
 var http = require('http');
 var fs = require('fs');
-// var mongoose = require('mongoose');
-
-var offset = 0,
-    staticPath = '/resource/jexd-xbcg.json?$limit=1&$offset=';
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/civ_test');
+var db = mongoose.connection;
+var offset = 1000,
+    staticPath = '/resource/jexd-xbcg.json?$limit=10&$offset=';
 
 var options = {
   hostname: 'data.hawaii.gov',
@@ -12,9 +13,9 @@ var options = {
   method: 'GET'
 };
 
-for (var i = 0; offset <= 3; i++) {
+for (var i = 0; offset <= 1000; i++) {
   getData();
-  offset++;
+  offset+=1000;
   options.path = staticPath + offset;
 }
 
@@ -30,8 +31,9 @@ function getData() {
         * function's scope.
         */
         data += chunk;
-      }).
-      on('end', function (chunk) {
+      });
+      resp.
+        on('end', function (chunk) {
         /*
         * Output the contents of the stream, once it is done, asyncronously
         */
@@ -42,9 +44,18 @@ function getData() {
         //   data = '';
         // });
         var niceData = JSON.parse(data);
-        console.log(niceData[0].aggregate);
+        console.log(niceData[5]);
+        // for (var k = 0; k < niceData.length; k++) {
+        //   db.collection('contributions').save(niceData, function(err, records) {
+        //     var singleDoc = niceData[k];
+        //     if(err) throw err;
+        //     console.log('added to mongoDB');
+        //   });
+        // }
       });
-  }).on("error", function(e){
-    console.log("Got error: " + e.message);
+    resp.
+      on("error", function(e){
+        console.log("Got error: " + e.message);
+    });
   });
 }
