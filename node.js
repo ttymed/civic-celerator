@@ -1,9 +1,9 @@
 var http = require('http');
 var fs = require('fs');
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://civ-accelerator:123456@ds041367.mongolab.com:41367/civ_accelerator');
+// var mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/civ_test');
 var offset = 0,
-    staticPath = '/resource/jexd-xbcg.json?$limit=10&$offset=';
+    staticPath = '/resource/jexd-xbcg.json?$limit=1&$offset=';
 
 
 var options = {
@@ -24,10 +24,13 @@ function getData() {
       */
       // console.log(chunk.toString());
 
-      fs.appendFile('data.txt', chunk.toString(), function(err) {
-        if(err) throw err;
-        console.log('The "data to appended was successfully appended to file!!!"');
-      });
+      // fs.appendFile('data.txt', chunk.toString(), function(err) {
+      //   if(err) throw err;
+      //   console.log('The "data to appended was successfully appended to file!!!"');
+      // });
+
+      var formattedData = chunk.toJSON();
+     console.log(formattedData);
     }).
     on('end', function () {
       /*
@@ -40,10 +43,10 @@ function getData() {
   });
 }
 
-for (var i = 0; offset<50; i++) {
+for (var i = 0; offset<5000; i++) {
   
   getData();
-  offset += 10;
+  offset += 1000;
   options.path = staticPath + offset;
   console.log(options.path);
 }

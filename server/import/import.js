@@ -1,7 +1,7 @@
 var http = require('http');
 var fs = require('fs');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/civ_test');
+// mongoose.connect('mongodb://kingtak:kingtak@ds041367.mongolab.com:41367/civ_accelerator');
 var db = mongoose.connection;
 var offset = 0,
     staticPath = '/resource/jexd-xbcg.json?$limit=1000&$offset=';
